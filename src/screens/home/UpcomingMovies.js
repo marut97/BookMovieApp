@@ -22,7 +22,7 @@ const UpcomingMovies = () => {
       <div className="upcomingMoviesHeader">Upcoming Movies</div>
       <GridList cols={6} style={{ flexWrap: "nowrap" }}>
         {movies.map((movie) => (
-          <GridListTile className="movieTitle" key={movie.id}>
+          <GridListTile style={{ height: "250px" }} key={movie.id}>
             <img src={movie.poster_url} alt={movie.title} />
             <GridListTileBar title={movie.title} />
           </GridListTile>

@@ -5,6 +5,7 @@
   text-align: center;
 }
 
-.movieTitle {
-  height: "250px";
+.movieFilter {
+  width: "24%";
+  margin: "16px";
 }
