@@ -19,19 +19,25 @@ const ReleasedMovies = (props) => {
   }, []);
 
   return (
-    <div className="releasedMovies" style={{
-        display: 'flex'
-    }}>
-      <GridList cols={4} rowHeight={350} style={{
-                    width: "76%",
-                    margin: "16px",
-                    overflow: "hidden"
-                }}>
+    <div className="releasedMovies">
+      <GridList
+        cols={4}
+        rowHeight={350}
+        spacing={20}
+        style={{
+          width: "76%",
+          margin: "16px",
+          overflow: "hidden",
+        }}
+      >
         {movies.map((movie) => (
-          <GridListTile key={movie.id} style={{
-            height: "250px",
-            cursor: "pointer"
-        }}>
+          <GridListTile
+            key={movie.id}
+            style={{
+              height: "250px",
+              cursor: "pointer",
+            }}
+          >
             <Link to={"/movie/" + movie.id}>
               <img src={movie.poster_url} alt={movie.title} />
               <GridListTileBar
@@ -43,7 +49,7 @@ const ReleasedMovies = (props) => {
         ))}
       </GridList>
 
-      <div className="movieFilter"/>
+      <div className="movieFilter" />
     </div>
   );
 };

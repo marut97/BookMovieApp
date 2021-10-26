@@ -9,3 +9,7 @@
   width: "24%";
   margin: "16px";
 }
+
+.releasedMovies {
+  display: flex;
+}
