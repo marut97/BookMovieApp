@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./LoginDialog.css";
+import LoginForm from "./LoginForm";
 import {
   Button,
   Tabs,
@@ -53,7 +54,7 @@ const LoginDialog = (props) => {
           <Tab label="REGISTER" />
         </Tabs>
         <TabPanel value={value} index={0}>
-          {/* <LoginForm /> */}
+          <LoginForm />
         </TabPanel>
         <TabPanel value={value} index={1}>
           {/* <RegisterForm /> */}
