@@ -11,15 +11,14 @@ import "./Details.css";
 import Ratings from "./Ratings";
 import MainDetails from "./MainDetails";
 
-const Content = (props) => {
-  // Declare state variables
+const Details = function (props) {
+
   const [movie, setMovie] = useState({});
   const [youtube, setYoutube] = useState("");
   const [genre, setGenre] = useState("");
   const [date, setDate] = useState("");
   const [artist, setArtist] = useState([]);
 
-  // function to get movie
   async function load() {
     const rawResponse = await fetch(
       props.baseUrl + "movies/" + props.match.params.id,
@@ -32,7 +31,6 @@ const Content = (props) => {
       }
     );
 
-    // Handling response
     const data = await rawResponse.json();
     setYoutube(data.trailer_url.split("=")[1]);
     setGenre(data.genres.join(", "));
@@ -46,7 +44,17 @@ const Content = (props) => {
   }, []);
 
   return (
-    <div className="details">
+    <div>
+      <Header
+        loggedIn={props.loggedIn}
+        loggedInChanged={props.loggedInChanged}
+        BookShowVisible={true}
+        id={props.match.params.id}
+      />
+      <Link to={"/"} className="link">
+        <Typography className="back">&#60; Back to Book Show</Typography>
+      </Link>
+      <div className="details">
       <div className="leftSection">
         <img src={movie.poster_url} alt={movie.title} className="poster" />
       </div>
@@ -57,7 +65,8 @@ const Content = (props) => {
         genre={genre}
         youtube={youtube}
       />
-      <div className="rightSection">
+    </div>
+    <div className="rightSection">
         <Ratings />
         <Typography className="artist">
           <b>Artists:</b>
@@ -77,23 +86,6 @@ const Content = (props) => {
           ))}
         </GridList>
       </div>
-    </div>
-  );
-};
-
-const Details = function (props) {
-  return (
-    <div>
-      <Header
-        loggedIn={props.loggedIn}
-        loggedInChanged={props.loggedInChanged}
-        BookShowVisible={true}
-        id={props.match.params.id}
-      />
-      <Link to={"/"} className="link">
-        <Typography className="back">&#60; Back to Book Show</Typography>
-      </Link>
-      <Content {...props} />
     </div>
   );
 };
