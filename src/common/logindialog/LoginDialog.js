@@ -4,65 +4,37 @@ import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import Tabs from "@mui/material/Tabs";
 import Box from "@mui/material/Box";
+import RegisterForm from "./RegisterForm";
 
 const LoginDialog = (props) => {
-  <Dialog open={props.open} onClose={props.handleClose}>
+  const [show, setDialogShow] = useState(false);
+
+  <Dialog
+    open={show}
+    onClose={props.handleClose}
+    style={{
+      content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        width: "340px",
+        transform: "translate(-50%, -50%)",
+      },
+    }}
+  >
     <DialogContent>
-      <Box sx={{ width: "100%" }}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-          >
-            <Tab label="LOGIN" {...a11yProps(0)} />
-            <Tab label="REGISTER" {...a11yProps(1)} />
-          </Tabs>
-        </Box>
-        <TabPanel value={value} index={0}>
-          <FormControl required className="formControl">
-            <InputLabel htmlFor="loginUsername">
-              Username
-            </InputLabel>
-            <Input
-              id="loginUsername"
-              validate={[required()]}
-              onChange={loginUsernameChangeHandler}
-            />
-            <FormHelperText>
-              <span className="red">Required</span>
-            </FormHelperText>
-          </FormControl>
-          <FormControl required className="formControl">
-            <InputLabel htmlFor="loginPassword">
-              Username
-            </InputLabel>
-            <Input
-              id="loginPassword"
-              validate={[required()]}
-              onChange={loginPasswordChangeHandler}
-            />
-            <FormHelperText>
-              <span className="red">Required</span>
-            </FormHelperText>
-          </FormControl>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <FormControl required className="formControl">
-            <InputLabel htmlFor="location">Choose Location:</InputLabel>
-            <Select value={location} onChange={locationChangeHandler}>
-              {locations.map((loc) => (
-                <MenuItem key={"loc" + loc.id} value={loc.location}>
-                  {loc.location}
-                </MenuItem>
-              ))}
-            </Select>
-            <FormHelperText className={reqLocation}>
-              <span className="red">Required</span>
-            </FormHelperText>
-          </FormControl>
-        </TabPanel>
-      </Box>
+      <Tabs value={value} onChange={handleChange} centered>
+        <Tab label="LOGIN" />
+        <Tab label="REGISTER" />
+      </Tabs>
+      <TabPanel value={value} index={0}>
+        <LoginForm />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <RegisterForm />
+      </TabPanel>
     </DialogContent>
     <DialogActions>
       <Button onClick={handleClose}>Cancel</Button>
