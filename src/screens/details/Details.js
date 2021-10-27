@@ -8,16 +8,16 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "./Details.css";
-import YouTube from "react-youtube";
 import Ratings from "./Ratings";
+import MainDetails from "./MainDetails";
 
 const Content = (props) => {
   // Declare state variables
-  const [movieData, setMovieDetail] = useState({});
-  const [ytData, setYTDetail] = useState("");
-  const [genreData, setGenreDetail] = useState("");
-  const [dateData, setDateDetail] = useState("");
-  const [artistData, setArtistDetail] = useState([]);
+  const [movie, setMovie] = useState({});
+  const [youtube, setYoutube] = useState("");
+  const [genre, setGenre] = useState("");
+  const [date, setDate] = useState("");
+  const [artist, setArtist] = useState([]);
 
   // function to get movie
   async function load() {
@@ -34,11 +34,11 @@ const Content = (props) => {
 
     // Handling response
     const data = await rawResponse.json();
-    setYTDetail(data.trailer_url.split("=")[1]);
-    setGenreDetail(data.genres.join(", "));
-    setDateDetail(new Date(data.release_date).toDateString());
-    setArtistDetail(data.artists);
-    setMovieDetail(data);
+    setYoutube(data.trailer_url.split("=")[1]);
+    setGenre(data.genres.join(", "));
+    setDate(new Date(data.release_date).toDateString());
+    setArtist(data.artists);
+    setMovie(data);
   }
 
   useEffect(() => {
@@ -48,44 +48,15 @@ const Content = (props) => {
   return (
     <div className="details">
       <div className="leftSection">
-        <img
-          src={movieData.poster_url}
-          alt={movieData.title}
-          className="poster"
-        />
+        <img src={movie.poster_url} alt={movie.title} className="poster" />
       </div>
-      <div className="centerSection">
-        <Typography variant="headline" component="h2">
-          {movieData.title}
-        </Typography>
-        <br />
-        <Typography>
-          <b>Genre:</b> {genreData}
-        </Typography>
-        <br />
-        <Typography>
-          <b>Duration:</b> {movieData.duration}
-        </Typography>
-        <br />
-        <Typography>
-          <b>Release Date:</b> {dateData}
-        </Typography>
-        <br />
-        <Typography>
-          <b>Rating:</b> {movieData.rating}
-        </Typography>
-        <br />
-        <Typography className="plot">
-          <b>Plot:</b> ( <a href={movieData.wiki_url}>Wiki Link</a>){" "}
-          {movieData.storyline}
-        </Typography>
-        <br />
-        <Typography className="trailer">
-          <b>Trailer:</b>
-        </Typography>
-        <br />
-        <YouTube videoId={ytData} className="player" />
-      </div>
+      <MainDetails
+        className="centerSection"
+        movie={movie}
+        date={date}
+        genre={genre}
+        youtube={youtube}
+      />
       <div className="rightSection">
         <Ratings />
         <Typography className="artist">
@@ -93,7 +64,7 @@ const Content = (props) => {
           <br />
         </Typography>
         <GridList cols={2} style={{ margin: "2px" }}>
-          {artistData.map((artist) => (
+          {artist.map((artist) => (
             <GridListTile key={artist.id}>
               <img
                 src={artist.profile_url}
