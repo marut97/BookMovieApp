@@ -15,7 +15,6 @@ function Error() {
 }
 
 const LoginForm = (props) => {
-
   const [loginForm, setLoginForm] = useState({
     id: 0,
     username: "",
@@ -29,7 +28,6 @@ const LoginForm = (props) => {
   const [loginFormMessage, setLoginFormMessage] = useState("");
 
   async function loginHandler(user) {
-      
     const authentication = btoa(`${user.username}:${user.password}`);
 
     const rawResponse = await fetch("http://localhost:8085/api/v1/auth/login", {
@@ -44,7 +42,6 @@ const LoginForm = (props) => {
     const headers = await rawResponse.headers;
 
     if (data.status === "ACTIVE") {
-      // on successful login save details in local storage
       localStorage.setItem("token", headers.get("access-token"));
       localStorage.setItem("userInfo", data);
       props.onLoggedIn();
@@ -57,7 +54,6 @@ const LoginForm = (props) => {
     e.preventDefault();
     const state = loginForm;
     let errors = state.errors;
-    // On submit validation
     if (state.username.length === 0) {
       errors.username = "required";
     }
@@ -65,7 +61,6 @@ const LoginForm = (props) => {
       errors.password = "required";
     }
 
-    // set state if errors found
     if (state.errors.username.length > 0 || state.errors.password.length > 0) {
       setLoginForm({ ...state });
     } else {
@@ -78,27 +73,16 @@ const LoginForm = (props) => {
     const { name, value } = e.target;
     let errors = state.errors;
 
-    switch (name) {
-      case "username":
-        errors.username = checkEmptyValue(value);
-        break;
-      case "password":
-        errors.password = checkEmptyValue(value);
-        break;
-      default:
-        break;
-    }
+    errors[name] = checkEmptyValue(value);
 
     state[e.target.name] = e.target.value;
     setLoginForm({ ...state });
   };
 
-  // Check if given param is empty or not
   function checkEmptyValue(value) {
     return value.length === 0 ? "required" : "";
   }
 
-  // retrieve login form data
   const { username, loginPassword } = loginForm;
 
   return (

@@ -15,7 +15,6 @@ function Error() {
 }
 
 const RegisterForm = (props) => {
-
   const [addUserForm, setAddUserForm] = useState({
     id: 0,
     first_name: "",
