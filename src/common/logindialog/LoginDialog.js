@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./LoginDialog.css";
 import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 import {
-  Button,
   Tabs,
   Tab,
   Typography,
-  Grid,
-  InputLabel,
-  Input,
-  FormHelperText,
   Dialog,
   DialogContent,
 } from "@material-ui/core";
@@ -32,6 +28,10 @@ const LoginDialog = (props) => {
     setDialogShow(props.show);
   }, [props.show]);
 
+  const handleChange = (event, value) => {
+    setValue({ value });
+  };
+
   return (
     <Dialog
       open={show}
@@ -49,15 +49,18 @@ const LoginDialog = (props) => {
       }}
     >
       <DialogContent>
-        <Tabs centered>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          centered
+        >
           <Tab label="LOGIN" />
           <Tab label="REGISTER" />
         </Tabs>
-        <TabPanel value={value} index={0}>
-          <LoginForm />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          {/* <RegisterForm /> */}
+        <TabPanel>
+          {value === 0 ? <LoginForm /> : <RegisterForm />}
         </TabPanel>
       </DialogContent>
     </Dialog>
