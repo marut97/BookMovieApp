@@ -10,13 +10,12 @@ import {
 } from "@material-ui/core";
 import "./LoginDialog.css";
 
-// Component for Error Text
 function Error() {
   return <FormHelperText style={{ color: "red" }}>required</FormHelperText>;
 }
 
 const RegisterForm = (props) => {
-  // Declare state variables
+
   const [addUserForm, setAddUserForm] = useState({
     id: 0,
     first_name: "",
@@ -35,7 +34,10 @@ const RegisterForm = (props) => {
 
   const [addUserFormMessage, setAddUserFormMessage] = useState("");
 
-  // This function is responsible for adding new user
+  function setError(value) {
+    return value.length === 0 ? "required" : "";
+  }
+
   async function addUserHandler(newUser) {
     const rawResponse = await fetch("http://localhost:8085/api/v1/signup", {
       method: "POST",
@@ -54,36 +56,12 @@ const RegisterForm = (props) => {
     }
   }
 
-  // Check if given param is empty or not
-  function checkEmptyValue(value) {
-    return value.length === 0 ? "required" : "";
-  }
-
-  // Input fielf Change Handler
   const inputChangedHandler = (e) => {
     const state = addUserForm;
     const { name, value } = e.target;
     let errors = state.errors;
 
-    switch (name) {
-      case "first_name":
-        errors.first_name = checkEmptyValue(value);
-        break;
-      case "last_name":
-        errors.last_name = checkEmptyValue(value);
-        break;
-      case "mobile_number":
-        errors.mobile_number = checkEmptyValue(value);
-        break;
-      case "email_address":
-        errors.email_address = checkEmptyValue(value);
-        break;
-      case "password":
-        errors.password = checkEmptyValue(value);
-        break;
-      default:
-        break;
-    }
+    errors[name] = setError(value);
 
     state[e.target.name] = e.target.value;
     setAddUserForm({ ...state });
