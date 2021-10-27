@@ -43,7 +43,7 @@ const ReleasedMovies = (props) => {
               <img src={movie.poster_url} alt={movie.title} />
               <GridListTileBar
                 title={movie.title}
-                subtitle={"Release Date:" + Date(movie.release_date).toString()}
+                subtitle={"Release Date:" + new Date(movie.release_date).toDateString()}
               />
             </Link>
           </GridListTile>
