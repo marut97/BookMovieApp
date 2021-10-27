@@ -14,6 +14,11 @@ const Header = (props) => {
     setLogInDialogVisibility(true);
     };
 
+    const onLoggedIn = () => {
+      setLoggedInState(true);
+      setLogInDialogVisibility(false);
+      };
+
   return (
     <div className="headerBar">
       <img src={logo} alt="Logo" className="movieLogo" />
@@ -38,7 +43,7 @@ const Header = (props) => {
           </Button>
         )}
       </div>
-      <LoginDialog show={logInDialogVisible}/>
+      <LoginDialog show={logInDialogVisible} onLoggedIn={onLoggedIn}/>
     </div>
   );
 };

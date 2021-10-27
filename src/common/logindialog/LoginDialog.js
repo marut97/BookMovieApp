@@ -10,16 +10,6 @@ import {
   DialogContent,
 } from "@material-ui/core";
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div {...other}>
-      {value === index && <Typography component={"div"}>{children}</Typography>}
-    </div>
-  );
-}
-
 const LoginDialog = (props) => {
   const [show, setDialogShow] = useState(false);
   const [value, setValue] = React.useState(0);
@@ -59,9 +49,9 @@ const LoginDialog = (props) => {
           <Tab label="LOGIN" />
           <Tab label="REGISTER" />
         </Tabs>
-        <TabPanel>
-          {value === 0 ? <LoginForm /> : <RegisterForm />}
-        </TabPanel>
+        <div>
+          {value === 0 ? <LoginForm onLoggedIn={props.onLoggedIn}/> : <RegisterForm />}
+        </div>
       </DialogContent>
     </Dialog>
   );
