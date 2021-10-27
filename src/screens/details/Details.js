@@ -12,7 +12,6 @@ import Ratings from "./Ratings";
 import MainDetails from "./MainDetails";
 
 const Details = function (props) {
-
   const [movie, setMovie] = useState({});
   const [youtube, setYoutube] = useState("");
   const [genre, setGenre] = useState("");
@@ -55,18 +54,17 @@ const Details = function (props) {
         <Typography className="back">&#60; Back to Book Show</Typography>
       </Link>
       <div className="details">
-      <div className="leftSection">
-        <img src={movie.poster_url} alt={movie.title} className="poster" />
-      </div>
-      <MainDetails
-        className="centerSection"
-        movie={movie}
-        date={date}
-        genre={genre}
-        youtube={youtube}
-      />
-    </div>
-    <div className="rightSection">
+        <div className="leftSection">
+          <img src={movie.poster_url} alt={movie.title} className="poster" />
+        </div>
+        <MainDetails
+          className="centerSection"
+          movie={movie}
+          date={date}
+          genre={genre}
+          youtube={youtube}
+        />
+      <div className="rightSection">
         <Ratings />
         <Typography className="artist">
           <b>Artists:</b>
@@ -86,6 +84,7 @@ const Details = function (props) {
           ))}
         </GridList>
       </div>
+    </div>
     </div>
   );
 };
