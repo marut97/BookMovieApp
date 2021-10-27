@@ -18,7 +18,7 @@ const LoginDialog = (props) => {
   }, [props.show]);
 
   const handleChange = (event, value) => {
-    setValue({ value });
+    setValue( value );
   };
 
   return (
