@@ -50,10 +50,13 @@ const LoginForm = (props) => {
     }
   }
 
+  // on login form submitted
   const login = (e) => {
     e.preventDefault();
     const state = loginForm;
     let errors = state.errors;
+
+    //validation on login form submmission
     if (state.username.length === 0) {
       errors.username = "required";
     }

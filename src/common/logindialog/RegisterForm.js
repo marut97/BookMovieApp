@@ -66,43 +66,42 @@ const RegisterForm = (props) => {
     setAddUserForm({ ...state });
   };
 
-  // Register Form Handler
+  // on register form submitted
   const register = (e) => {
     e.preventDefault();
     const state = addUserForm;
     let errors = state.errors;
-    // On submit validation
+
+    // validation on register form submission
+    let validationError = false;
     if (state.first_name.length === 0) {
       errors.first_name = "required";
+      validationError = true
     }
     if (state.last_name.length === 0) {
       errors.last_name = "required";
+      validationError = true
     }
     if (state.email_address.length === 0) {
       errors.email_address = "required";
+      validationError = true
     }
     if (state.password.length === 0) {
       errors.password = "required";
+      validationError = true
     }
     if (state.mobile_number.length === 0) {
       errors.mobile_number = "required";
+      validationError = true
     }
 
-    // set state if errors found
-    if (
-      state.errors.first_name.length > 0 ||
-      state.errors.last_name.length > 0 ||
-      state.errors.email_address.length > 0 ||
-      state.errors.password.length > 0 ||
-      state.errors.mobile_number.length > 0
-    ) {
+    if (validationError) {
       setAddUserForm({ ...state });
     } else {
       addUserHandler(addUserForm);
     }
   };
 
-  // retrieve register form data
   const { first_name, last_name, email_address, password, mobile_number } =
     addUserForm;
 

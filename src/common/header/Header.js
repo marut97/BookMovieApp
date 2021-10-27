@@ -34,7 +34,6 @@ const Header = (props) => {
   };
 
   useEffect(() => {
-    // Set Token
     setLoggedInState(props.loggedIn);
   }, [props]);
 

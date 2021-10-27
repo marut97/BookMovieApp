@@ -60,16 +60,14 @@ const MovieFilter = (props) => {
     props.onFilter(filter);
   };
 
-  // Function to fetch all the Genres
-  async function loadGenreData() {
+  async function loadGenres() {
     const rawResponse = await fetch("http://localhost:8085/api/v1/genres");
     const data = await rawResponse.json();
 
     setGenre(data.genres);
   }
 
-  // Function to fetch all the Artists
-  async function loadArtistData() {
+  async function loadArtists() {
     const rawResponse = await fetch("http://localhost:8085/api/v1/artists");
     const data = await rawResponse.json();
 
@@ -77,9 +75,8 @@ const MovieFilter = (props) => {
   }
 
   useEffect(() => {
-    // Calling functions to fetch the required data
-    loadGenreData();
-    loadArtistData();
+    loadGenres();
+    loadArtists();
   }, []);
 
   const changeHandler = (e, onChanged) => {
