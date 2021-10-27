@@ -55,7 +55,7 @@ const RegisterForm = (props) => {
     }
   }
 
-  const inputChangedHandler = (e) => {
+  const onRegisterFormChanged = (e) => {
     const state = addUserForm;
     const { name, value } = e.target;
     let errors = state.errors;
@@ -67,7 +67,7 @@ const RegisterForm = (props) => {
   };
 
   // Register Form Handler
-  const onRegisterFormSubmitted = (e) => {
+  const register = (e) => {
     e.preventDefault();
     const state = addUserForm;
     let errors = state.errors;
@@ -107,7 +107,7 @@ const RegisterForm = (props) => {
     addUserForm;
 
   return (
-    <form onSubmit={onRegisterFormSubmitted}>
+    <form onSubmit={register}>
       <Grid container direction="column" alignItems="center" justify="center">
         <FormControl
           style={{
@@ -122,7 +122,7 @@ const RegisterForm = (props) => {
             className="form-field"
             type="text"
             name="first_name"
-            onChange={inputChangedHandler}
+            onChange={onRegisterFormChanged}
             value={first_name}
           />
           {addUserForm.errors.first_name.length > 0 && (
@@ -140,7 +140,7 @@ const RegisterForm = (props) => {
             className="form-field"
             type="text"
             name="last_name"
-            onChange={inputChangedHandler}
+            onChange={onRegisterFormChanged}
             value={last_name}
           />
           {addUserForm.errors.last_name.length > 0 && (
@@ -158,7 +158,7 @@ const RegisterForm = (props) => {
             className="form-field"
             type="email"
             name="email_address"
-            onChange={inputChangedHandler}
+            onChange={onRegisterFormChanged}
             value={email_address}
           />
           {addUserForm.errors.email_address.length > 0 && (
@@ -176,7 +176,7 @@ const RegisterForm = (props) => {
             className="form-field"
             type="password"
             name="password"
-            onChange={inputChangedHandler}
+            onChange={onRegisterFormChanged}
             value={password}
           />
           {addUserForm.errors.password.length > 0 && (
@@ -194,7 +194,7 @@ const RegisterForm = (props) => {
             className="form-field"
             type="text"
             name="mobile_number"
-            onChange={inputChangedHandler}
+            onChange={onRegisterFormChanged}
             value={mobile_number}
           />
           {addUserForm.errors.mobile_number.length > 0 && (

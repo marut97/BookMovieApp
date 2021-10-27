@@ -50,7 +50,7 @@ const LoginForm = (props) => {
     }
   }
 
-  const onLoginFormSubmitted = (e) => {
+  const login = (e) => {
     e.preventDefault();
     const state = loginForm;
     let errors = state.errors;
@@ -68,7 +68,7 @@ const LoginForm = (props) => {
     }
   };
 
-  const inputLoginChangedHandler = (e) => {
+  const onLoginFormChanged = (e) => {
     const state = loginForm;
     const { name, value } = e.target;
     let errors = state.errors;
@@ -86,7 +86,7 @@ const LoginForm = (props) => {
   const { username, loginPassword } = loginForm;
 
   return (
-    <form onSubmit={onLoginFormSubmitted}>
+    <form onSubmit={login}>
       <Grid container direction="column" alignItems="center" justify="center">
         <FormControl
           style={{
@@ -99,7 +99,7 @@ const LoginForm = (props) => {
             className="form-field"
             type="text"
             name="username"
-            onChange={inputLoginChangedHandler}
+            onChange={onLoginFormChanged}
             value={username}
           />
           {loginForm.errors.username.length > 0 && (
@@ -117,7 +117,7 @@ const LoginForm = (props) => {
             className="form-field"
             type="password"
             name="password"
-            onChange={inputLoginChangedHandler}
+            onChange={onLoginFormChanged}
             value={loginPassword}
           />
           {loginForm.errors.password.length > 0 && (
