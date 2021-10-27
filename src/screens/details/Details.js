@@ -117,7 +117,7 @@ const Content = (props) => {
 const Details = function (props) {
   return (
     <div>
-      <Header {...props} />
+      <Header loggedIn={false} BookShowVisible={true} />
       <Link to={"/"} className="link">
         <Typography className="back">&#60; Back to Book Show</Typography>
       </Link>
