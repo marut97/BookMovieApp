@@ -36,6 +36,9 @@ const MovieFilter = (props) => {
   const dateHeaderMarginStyle = {
     marginTop: 2 * theme.spacing.unit,
   };
+  const cardMinimumWidth = {
+    minWidth: 240+ 2*theme.spacing.unit
+  };
 
   const addFilter = (name, value) => {
     if (value.length > 0) {
@@ -85,7 +88,7 @@ const MovieFilter = (props) => {
   };
 
   return (
-    <Card>
+    <Card style={cardMinimumWidth}>
       <CardContent>
         <Typography style={marginStyle} color={theme.palette.primary.light}>
           FIND MOVIES BY:

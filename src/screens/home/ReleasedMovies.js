@@ -54,6 +54,7 @@ const ReleasedMovies = (props) => {
         style={{
           width: "24%",
           margin: "16px",
+          minWidth: "240px"
         }}
       >
         <MovieFilter onFilter={load} />
