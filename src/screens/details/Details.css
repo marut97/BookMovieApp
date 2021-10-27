@@ -46,3 +46,7 @@
   object-fit: contain;
   object-position: top left;
 }
+
+.selected { color: "yellow" !important}
+.hover { color: "#" !important}
+.none { color: "black" !important}
