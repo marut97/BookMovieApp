@@ -8,26 +8,23 @@ import { Link } from "react-router-dom";
 const Header = (props) => {
   const [loggedIn, setLoggedInState] = useState(props.loggedIn);
   const [logInDialogVisible, setLogInDialogVisibility] = useState(false);
-  const [id, setId] = useState(props.id);
 
   const requestLogin = () => {
     setLogInDialogVisibility(true);
   };
 
   const requestLogout = async () => {
-    await fetch("http://localhost:8085/api/v1/auth/logout",
-            {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    "authorization": `Bearer ${localStorage.getItem("token")}`
-                }
-            }
-        );
+    await fetch("http://localhost:8085/api/v1/auth/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
 
-        setLogInDialogVisibility(false)
-        localStorage.clear();
-        setLoggedInState(false);
+    setLogInDialogVisibility(false);
+    localStorage.clear();
+    setLoggedInState(false);
   };
 
   const onLoggedIn = () => {
@@ -51,7 +48,7 @@ const Header = (props) => {
             color="primary"
             className="bookShowButton"
             component={Link}
-            to={"/bookshow/" + id}
+            to={"/bookshow/" + props.id}
           >
             BOOK SHOW
           </Button>
@@ -76,7 +73,12 @@ const Header = (props) => {
             LOGIN
           </Button>
         ) : (
-          <Button variant="contained" color="default" className="logoutButton" onClick={requestLogout}>
+          <Button
+            variant="contained"
+            color="default"
+            className="logoutButton"
+            onClick={requestLogout}
+          >
             LOGOUT
           </Button>
         )}

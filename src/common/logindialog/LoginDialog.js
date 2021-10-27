@@ -5,7 +5,6 @@ import RegisterForm from "./RegisterForm";
 import {
   Tabs,
   Tab,
-  Typography,
   Dialog,
   DialogContent,
 } from "@material-ui/core";

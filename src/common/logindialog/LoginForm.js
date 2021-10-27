@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./LoginDialog.css";
 import {
   Typography,
@@ -15,15 +15,6 @@ function Error() {
 }
 
 const LoginForm = (props) => {
-  useEffect(() => {
-    if (props.match) {
-      // check url and set url
-      // if match found
-      setUrl(props.match.url.split("/"));
-    }
-    // Set Token
-    setToken(localStorage.getItem("token"));
-  }, [props]);
 
   const [loginForm, setLoginForm] = useState({
     id: 0,
@@ -36,8 +27,6 @@ const LoginForm = (props) => {
   });
 
   const [loginFormMessage, setLoginFormMessage] = useState("");
-  const [token, setToken] = useState("");
-  const [url, setUrl] = useState([]);
 
   async function loginHandler(user) {
       
@@ -58,7 +47,6 @@ const LoginForm = (props) => {
       // on successful login save details in local storage
       localStorage.setItem("token", headers.get("access-token"));
       localStorage.setItem("userInfo", data);
-      setToken(headers.get("access-token"));
       props.onLoggedIn();
     } else {
       setLoginFormMessage(data.message);

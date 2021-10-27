@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Typography, IconButton } from "@material-ui/core";
 import "./Details.css";
 import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
