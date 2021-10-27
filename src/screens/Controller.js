@@ -23,11 +23,11 @@ const Controller = () => {
         />
         <Route
           path="/bookshow/:id"
-          render={(props) => <BookShow {...props} baseUrl={baseUrl} />}
+          render={(props) => <BookShow loggedIn={loggedIn} loggedInChanged={setLoggedIn} {...props} baseUrl={baseUrl} />}
         />
         <Route
           path="/confirm/:id"
-          render={(props) => <Confirmation {...props} baseUrl={baseUrl} />}
+          render={(props) => <Confirmation loggedIn={loggedIn} loggedInChanged={setLoggedIn} {...props} baseUrl={baseUrl} />}
         />
       </div>
     </Router>

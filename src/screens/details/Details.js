@@ -117,7 +117,7 @@ const Content = (props) => {
 const Details = function (props) {
   return (
     <div>
-      <Header loggedIn={props.loggedIn}  loggedInChanged={props.loggedInChanged} BookShowVisible={true} />
+      <Header loggedIn={props.loggedIn}  loggedInChanged={props.loggedInChanged} BookShowVisible={true} id={props.match.params.id}/>
       <Link to={"/"} className="link">
         <Typography className="back">&#60; Back to Book Show</Typography>
       </Link>

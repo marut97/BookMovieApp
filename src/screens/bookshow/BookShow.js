@@ -193,7 +193,7 @@ const BookShow = (props) => {
 
   return (
     <div>
-      <Header baseUrl={props.baseUrl} />
+      <Header loggedIn={props.loggedIn} loggedInChanged={props.loggedInChanged} BookShowVisible={false} baseUrl={props.baseUrl} />
       <div className="bookShow">
         <Typography className="back">
           <Link to={"/movie/" + props.match.params.id}>
