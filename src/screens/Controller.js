@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Home from "../screens/home/Home";
 import Details from "../screens/details/Details";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -7,6 +7,7 @@ import Confirmation from "../screens/confirmation/Confirmation";
 
 const Controller = () => {
   const baseUrl = "/api/v1/";
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <Router>
@@ -14,11 +15,11 @@ const Controller = () => {
         <Route
           exact
           path="/"
-          render={(props) => <Home {...props} baseUrl={baseUrl} />}
+          render={(props) => <Home loggedIn={loggedIn} loggedInChanged={setLoggedIn} {...props} baseUrl={baseUrl} />}
         />
         <Route
           path="/movie/:id"
-          render={(props) => <Details {...props} baseUrl={baseUrl} />}
+          render={(props) => <Details loggedIn={loggedIn} loggedInChanged={setLoggedIn} {...props} baseUrl={baseUrl} />}
         />
         <Route
           path="/bookshow/:id"

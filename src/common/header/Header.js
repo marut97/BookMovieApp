@@ -16,6 +16,7 @@ const Header = (props) => {
 
     const onLoggedIn = () => {
       setLoggedInState(true);
+      props.loggedInChanged(true);
       setLogInDialogVisibility(false);
       };
 

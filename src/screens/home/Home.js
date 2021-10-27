@@ -7,7 +7,7 @@ import ReleasedMovies from "./ReleasedMovies";
 const Home = (props) => {
   return (
     <div className="home">
-      <Header loggedIn={false} BookShowVisible={false}/>
+      <Header loggedIn={props.loggedIn} loggedInChanged={props.loggedInChanged} BookShowVisible={false} />
       <UpcomingMovies />
       <ReleasedMovies />
     </div>
