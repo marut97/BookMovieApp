@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.home{
+    overflow-x: hidden;
+}
+
 .movieFilter {
   width: "24%";
   margin: "16px";

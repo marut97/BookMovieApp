@@ -2,19 +2,20 @@ import React, { useEffect, useState } from "react";
 import { GridList, GridListTile, GridListTileBar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import MovieFilter from "./MovieFilter";
 
 const ReleasedMovies = (props) => {
   const [movies, setMovies] = useState([]);
 
-  useEffect(() => {
-    const load = async () => {
-      const response = await fetch(
-        "http://localhost:8085/api/v1/movies?status=RELEASED"
-      );
-      const data = await response.json();
-      setMovies(data.movies);
-    };
+  const load = async (filter = "") => {
+    const response = await fetch(
+      "http://localhost:8085/api/v1/movies?status=RELEASED" + filter
+    );
+    const data = await response.json();
+    setMovies(data.movies);
+  };
 
+  useEffect(() => {
     load();
   }, []);
 
@@ -49,7 +50,14 @@ const ReleasedMovies = (props) => {
         ))}
       </GridList>
 
-      <div className="movieFilter" />
+      <div
+        style={{
+          width: "24%",
+          margin: "16px",
+        }}
+      >
+        <MovieFilter onFilter={load} />
+      </div>
     </div>
   );
 };
