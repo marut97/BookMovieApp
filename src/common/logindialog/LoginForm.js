@@ -40,8 +40,6 @@ const LoginForm = (props) => {
   const [url, setUrl] = useState([]);
 
   async function loginHandler(user) {
-
-    console.log(user.username, user.password);
       
     const authentication = btoa(`${user.username}:${user.password}`);
 
@@ -53,11 +51,9 @@ const LoginForm = (props) => {
       },
     });
 
-    console.log("login");
     const data = await rawResponse.json();
     const headers = await rawResponse.headers;
 
-    console.log(data.status);
     if (data.status === "ACTIVE") {
       // on successful login save details in local storage
       localStorage.setItem("token", headers.get("access-token"));

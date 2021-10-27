@@ -42,7 +42,6 @@ const MovieFilter = (props) => {
 
   const addFilter = (name, value) => {
     if (value.length > 0) {
-        console.log(name+value);
       return name + value;
     }
     return "";

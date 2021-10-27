@@ -11,8 +11,23 @@ const Header = (props) => {
   const [id, setId] = useState(props.id);
 
   const requestLogin = () => {
-    // console.log(url[1], url[2]);
     setLogInDialogVisibility(true);
+  };
+
+  const requestLogout = async () => {
+    await fetch("http://localhost:8085/api/v1/auth/logout",
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "authorization": `Bearer ${localStorage.getItem("token")}`
+                }
+            }
+        );
+
+        setLogInDialogVisibility(false)
+        localStorage.clear();
+        setLoggedInState(false);
   };
 
   const onLoggedIn = () => {
@@ -61,7 +76,7 @@ const Header = (props) => {
             LOGIN
           </Button>
         ) : (
-          <Button variant="contained" color="default" className="logoutButton">
+          <Button variant="contained" color="default" className="logoutButton" onClick={requestLogout}>
             LOGOUT
           </Button>
         )}
